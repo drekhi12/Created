@@ -5,7 +5,7 @@ import urllib2
 i=1
 f=open("link.txt", "a+")
 while i<=50:
-	url ="https://www.justdial.com/Mumbai/Schools/nct-10422444/page-"+str(i)
+	url ="https://www.justdial.com/Bangalore/Tutorials/nct-10502492/page-"+str(i)
 	req = urllib2.Request(url, headers={'User-Agent' : "Magic Browser"}) 
 	page = urllib2.urlopen(req).read()
 	soup=BeautifulSoup(page,'html.parser')

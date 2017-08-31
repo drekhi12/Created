@@ -3,6 +3,30 @@ import HTMLParser
 import urllib2
 import xlwt
 
+url = raw_input("Enter the link : ")
+#"https://www.justdial.com/Bangalore/Tutorials/nct-10502492/page-"
+number_of_pages = input("Enter how many Pages are there : ")
+i=1
+f=open("link.txt", "a+")
+while i<=number_of_pages:
+	url =  url + str(i)
+	req = urllib2.Request(url, headers={'User-Agent' : "Magic Browser"}) 
+	page = urllib2.urlopen(req).read()
+	soup=BeautifulSoup(page,'html.parser')
+
+	urls = []
+	address= soup.findAll('span',{'class':'jcn'})
+	for addresses in address:
+		urls.append(addresses.find('a').attrs['href'])
+
+	for url in urls	:
+		f.write(url)
+		f.write('\n')
+	print i
+	i=i+1
+
+f.close() 
+
 book = xlwt.Workbook(encoding="utf-8")
 sheet1 = book.add_sheet("Sheet 1")
 w=0
